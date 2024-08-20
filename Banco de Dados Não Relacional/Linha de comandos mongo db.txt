@@ -62,3 +62,23 @@ db.produtos.insertOne({
 }
 });
 
+// Inserindo um outro produto, com dois subdocumentos
+db.produtos.insertOne({
+	nome: "Doce de leite",
+	marca: "Mineirin",
+	preco: 17.65,
+	fornecedor: {
+	nome: "Indústria de Alimentos Bacana S/A",
+	CNPJ: "01.234.567/0001-89",
+	email: "contato@bacana.ind.br",
+	representante: "Astolfo Alvarenga",
+	informacao_nutricional: {
+	acucares_g: 75,
+	gordura_saturada: 12,
+	proteína: 13
+	
+}
+	}
+});
+
+
