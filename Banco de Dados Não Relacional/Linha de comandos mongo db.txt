@@ -1,0 +1,64 @@
+// Exibe todos os bancos de dados já existentes
+show dbs;
+
+// Selecionando um novo banco de dados
+// (Se não existir, será criado em memória e passará a existir // em disco quando algo for efetivamente inserido nele)
+use estoque;
+
+// Exibindo as coleções do banco de dados ativo 
+show collections; 
+
+// Primeira inserção
+db.produtos.insertOne({
+	nome: "Vassoura de piaçava",
+	preco: 31.77,
+	categoria: "Limpeza"
+});
+
+// Segunda inserção
+db.produtos.insertOne({
+	nome: "Café",
+	marca: "Dubom",
+	quantidade: 500,
+	unidade: "g",
+	preco: 22.38,
+	categoria: "Alimentos e bebidas",
+	estoque: 52
+});
+
+// Terceira inserção
+db.produtos.insertOne({
+	nome_oficial: "República Francesa",
+	nome_comum: "França",
+	capital: "Paris",
+	continente: "Europa",
+	chefe_estado: "Emanuel Macron",
+	lingua_oficial: "Francês"	
+});
+
+// Exibindo os produtos cadastrados
+db.produtos.find();
+
+// Exibindo apenas o produto onde o nome é igual a café
+db.produtos.find({nome: "Café"});
+
+// Exibindo apenas o produto onde o nome é igual a café (case INTENSIVE)
+db.produtos.find({nome: /^café$/i });
+
+// Inserindo um produto com subdocumento
+db.produtos.insertOne({
+	nome: "Biscoito",
+	marca: "Crocantão",
+	quantidade: 200,
+	unidade: "g",
+	preco: 8.19,
+	categoria: "Alimentos e bebidas",
+	estoque: 100,
+	fornecedor: {
+	nome: "Indústria de Alimentos Bacana S/A",
+	CNPJ: "01.234.567/0001-89",
+	email: "contato@bacana.ind.br",
+	representante: "Astolfo Alvarenga"
+}
+});
+
