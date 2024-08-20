@@ -81,4 +81,10 @@ db.produtos.insertOne({
 	}
 });
 
+// Exibindo os produtos em ordem alfabética de nome (1 == ordem crescente) 
+db.produtos.find().sort({ nome: 1});
 
+// // Exibindo os produtos em ordem alfabética de nome (-1 == ordem decrescente) 
+db.produtos.find().sort({ nome: -1});
+
+  
