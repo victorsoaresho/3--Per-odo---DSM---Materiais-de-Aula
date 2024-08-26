@@ -87,4 +87,51 @@ db.produtos.find().sort({ nome: 1});
 // // Exibindo os produtos em ordem alfabética de nome (-1 == ordem decrescente) 
 db.produtos.find().sort({ nome: -1});
 
-  
+// Listando apenas produtos que NÃO TÊM o campo "categoria"
+db.produtos.find({ categoria: { $exists: false } });
+
+// Listando apenas produtos cujo fornecedor tem o campo "email"
+db.produtos.find({ "fornecedor.email": { $exists: true} });
+
+// Procurando o produto "Café" pelo seu _id e alterando o valor
+
+// de campos já existentes
+db.produtos.updateOne(
+	{ _id: ObjectId('66c3cd1cfb179a4a05127651') }, // Aqui cada um tem o seu
+	{
+		$set: {
+			marca: "Torra Premium",
+			preco: 40.27
+		}
+	}
+);
+
+// Atualizando um campo para exibir algo que não existia anteriormente
+db.produtos.updateOne(
+{nome: "Paçoca"}, $set: {categoria: "Alimentos e bebidas);
+
+// Exibindo o produto paçoca, mostrando apenas os campos 'nome', 'preco' e 'categoria
+db.produtos.findOne({nome: "Paçoca"}, {nome: 1, preco: 1, categoria: 1};
+
+// Repetindo a consulta acima, trazendo os produtos paçoca e café
+db.produtos.findOne({nome: "Paçoca"}, {nome: 1, preco: 1, categoria: 1};
+
+// Aumentando o preço do doce de leite em 2,60
+// $inc: Incrementar
+db.produtos.findOne({nome: "Paçoca"}, {nome: 1, preco: 1, categoria: 1};
+
+// Aumentando em 10% todos os produtos que tenham o campo preço 
+// $mul: Multiplicar
+db.produtos.findOne({nome: "Paçoca"}, {nome: 1, preco: 1, categoria: 1};
+
+// Excluindo a intrusa republica francesa
+db.produtos.deleteOne({nome oficial: "República Francesa});
+
+// Listando todos os produtos que custam mais de R$20,00
+// $gt: greater than (Maior que)
+// $gte: greater than or equal to (Maior ou igual que)
+// $lt: lesser than (Menor que)
+// $lte: lesser than or equal to (menor ou igual que)
+db.produtos.find({preco: {$gt: 20}});
+
+    
